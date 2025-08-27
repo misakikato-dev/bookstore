@@ -1,25 +1,22 @@
 # Bookstore (Spring Boot)
 
 ## 概要
- ```text
 Spring Bootで作成したシンプルな本棚アプリです。  
 書籍の **登録・一覧表示・削除・編集・マイ本棚管理** ができるCRUDアプリケーション。  
 フロントには **Thymeleaf** と **Bootstrap** を利用し、見やすいUIを実現しています。  
 DBは **MySQL** を利用（デモ用途ではH2に切り替え可能）。
-```
+
 ---
 
 ## 主な機能
- ```text
 - 書籍を新規登録（タイトル、著者、価格を入力）
 - 書籍一覧の表示
 - 書籍の削除・編集
 - マイ本棚画面でお気に入り書籍を管理
-```
+
 ---
 
 ## 技術スタック
- ```text
 - Java 17  
 - Spring Boot  
 - Spring MVC  
@@ -27,7 +24,6 @@ DBは **MySQL** を利用（デモ用途ではH2に切り替え可能）。
 - Thymeleaf  
 - Bootstrap 5  
 - MySQL（H2 Databaseにも対応）
-```
 ---
 
  ## プロジェクト構成
