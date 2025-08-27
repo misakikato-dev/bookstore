@@ -1,4 +1,4 @@
-# Bookstore (Spring Boot)
+# 書籍管理アプリ (Spring Boot)
 
 ## 概要
 Spring Bootで作成したシンプルな本棚アプリです。  
