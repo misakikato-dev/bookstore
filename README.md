@@ -96,7 +96,7 @@ DBは **MySQL** を利用（デモ用途ではH2に切り替え可能）。
    / … ホーム画面
    /books 　　　　　… 書籍一覧
    /book_register  … 書籍登録フォーム
-  /save            … 書籍保存処理
+   /save           … 書籍保存処理
    /delete/{id}    … 書籍削除
    /edit/{id}      … 書籍編集
    /my_books       … マイ本棚
