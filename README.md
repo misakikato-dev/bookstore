@@ -63,7 +63,7 @@ DBは **MySQL** を利用（デモ用途ではH2に切り替え可能）。
 ## 実行方法（ローカル）
 1. リポジトリをclone  
  ```text
-   git clone https://github.com/jdshhg58djkshK/bookstore.git
+   git clone https://github.com/misakikato-dev/bookstore.git
    cd bookstore
 ```
 
