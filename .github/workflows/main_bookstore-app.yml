@@ -45,6 +45,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: java-app
+
+      - name: Show downloaded artifact files (debug)
+        run: |
+          echo "=== ls -la workspace after download ==="
+          ls -la || true
+          echo "=== find jars ==="
+          find . -type f -name "*.jar" -maxdepth 4 || true
       
       - name: Login to Azure
         uses: azure/login@v2
@@ -58,7 +65,9 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'bookstore-app'
-          package: '*.jar'
+          ## package: '*.jar'
+          package: 'target/*.jar'
 
           
+
 
