@@ -90,13 +90,8 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'bookstore-app'
-<<<<<<< HEAD
           # match the built jar wherever it was expanded in the workspace
           package: '**/bookStore-*.jar'
-=======
-          ## package: '*.jar'
-          package: 'target/*.jar'
->>>>>>> ce23bfd35618f7779858627dd91c7c5ff9085504
 
           
 
