@@ -17,23 +17,33 @@
 
 	<properties>
 		<java.version>17</java.version>
+		<!-- Ensure resources are processed as UTF-8 so YAML with Japanese comments is handled correctly -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.resources.encoding>UTF-8</maven.resources.encoding>
 	</properties>
 
 	<dependencies>
-		<!-- JPA＋Hibernate -->
+		<!-- JPA?��Hibernate -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- MySQL ドライバ -->
+		<!-- MySQL ドライ�? -->
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- Thymeleaf, Web, DevTools, Test は必要に応じて -->
+		<!-- H2 (in-memory) for development / portfolio demo -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Thymeleaf, Web, DevTools, Test は�?要に応じて -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -56,7 +66,22 @@
 	</dependencies>
 
 	<build>
+		<!-- Do not filter resource files (YAML, templates) to avoid encoding issues during copying -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 		<plugins>
+			<!-- Ensure resource filtering uses UTF-8 -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.3.1</version>
+				<configuration>
+					<encoding>${maven.resources.encoding}</encoding>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
