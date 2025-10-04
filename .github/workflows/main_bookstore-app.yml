@@ -24,14 +24,22 @@ jobs:
           java-version: '17'
           distribution: 'microsoft'
 
-      - name: Build with Maven (Skip tests)
-        run: mvn -B clean package -DskipTests
+      - name: Show mvn version (debug)
+        run: ./mvnw -v || mvn -v || true
+
+      - name: Build with Maven (Skip tests) using Maven Wrapper
+        run: ./mvnw -B clean package -DskipTests
+
+      - name: Show target directory (debug)
+        run: |
+          echo "=== ls -la target ==="
+          ls -la target || true
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          path: 'target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -46,6 +54,13 @@ jobs:
         with:
           name: java-app
       
+      - name: Show downloaded artifact files (debug)
+        run: |
+          echo "=== ls -la workspace after download ==="
+          ls -la || true
+          echo "=== find jars ==="
+          find . -type f -name "*.jar" -maxdepth 4 || true
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -53,12 +68,22 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2E5FB77DDFB247BC839B8234C9DC58E5 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_014F9ADC287F45C5B15E205EF113640C }}
 
+      - name: Prepare deploy package (debug)
+        run: |
+          echo "=== pwd ==="
+          pwd
+          echo "=== ls -la (root) ==="
+          ls -la || true
+          echo "=== find bookStore jars ==="
+          find . -type f -name "bookStore-*.jar" -maxdepth 4 || true
+          echo "Will use pattern: **/bookStore-*.jar"
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'bookstore-app'
-          slot-name: 'Production'
-          package: '*.jar'
+          # match the built jar wherever it was expanded in the workspace
+          package: '**/bookStore-*.jar'
 
           
