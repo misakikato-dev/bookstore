@@ -1,7 +1,7 @@
 # 📚 書籍管理アプリ（Spring Boot）
 
 ## 📝 概要
-このプロジェクトは **Spring Boot** を使った簡単な書籍管理デモアプリです。  
+このプロジェクトは **Spring Boot** を使った簡単な書籍管理アプリです。  
 基本的な CRUD 操作（登録・更新・削除・一覧表示）を行い、  
 テンプレートには **Thymeleaf**、デザインには **Bootstrap 5** を使用しています。  
 
@@ -28,29 +28,37 @@
 ---
 
 ## 📁 ディレクトリ構成（抜粋）
-src/main/java/com/bookStore
-BookStoreApplication.java
-controller/
-BookController.java
-MyBookListController.java
-entity/
-Book.java
-MyBookList.java
-repository/
-BookRepository.java
-MyBookRepository.java
-service/
-BookService.java
-MyBookListService.java
+- src/main/java/com/bookStore
+```bash
+・BookStoreApplication.java
 
-src/main/resources
-templates/
-home.html
-bookList.html
-bookEdit.html
-bookRegister.html
-myBooks.html
-application.properties
+・controller/
+　　- BookController.java
+　　- MyBookListController.java
+
+・entity/
+   - Book.java
+   - MyBookList.java
+
+・repository/
+   -BookRepository.java
+   - MyBookRepository.java
+
+・service/
+   - BookService.java
+   - MyBookListService.java
+```
+
+- src/main/resources
+```bash
+・templates/
+   - home.html
+   - bookList.html
+   - bookRegister.html
+   - myBooks.html
+
+・application.properties
+```
 
 
 ---
@@ -62,17 +70,18 @@ application.properties
 ```bash
 git clone https://github.com/misakikato-dev/bookstore.git
 cd bookstore
+```
 
 ### 2️⃣ ビルド & 実行（H2使用時
-mvn spring-boot:run
 
+```bash
+mvn spring-boot:run
+```
 ・ブラウザで以下にアクセスしてアプリを確認できます：
 http://localhost:1010/
 
-
 ・H2コンソールも利用可能です👇
 http://localhost:1010/h2-console
-
 
 ☁️ 環境切り替え（H2 → MySQL）
 ・application.properties 内のH2設定をコメントアウト
