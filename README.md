@@ -1,9 +1,15 @@
 # 📚 書籍管理アプリ（Spring Boot）
 
+## 🌐 公開アプリ
+🚀 **デプロイ先（Render）**  
+👉 [https://bookstore-3wpn.onrender.com](https://bookstore-3wpn.onrender.com)
+
+> 初回アクセス時は Render Free プランのため、起動に数十秒かかる場合があります。
+
 ## 📝 概要
-このプロジェクトは **Spring Boot** を使った簡単な書籍管理アプリです。  
+このプロジェクトは **Spring Boot** を使った書籍管理アプリです。  
 基本的な CRUD 操作（登録・更新・削除・一覧表示）を行い、  
-テンプレートには **Thymeleaf**、デザインには **Bootstrap 5** を使用しています。  
+テンプレートエンジンに **Thymeleaf**、デザインに **Bootstrap 5** を使用しています。  
 
 デフォルトでは **H2（インメモリデータベース）** で動作し、  
 本番環境では **MySQL** に切り替えて運用することも可能です。
@@ -18,12 +24,15 @@
 ---
 
 ## 🧩 技術スタック
-- Java 17  
-- Spring Boot 3  
-- Spring MVC / Spring Data JPA  
-- Thymeleaf  
-- Bootstrap 5  
-- データベース: H2（デフォルト）、MySQL（切替可能）
+| 分類 | 使用技術 |
+|------|-----------|
+| 言語 | Java 17 |
+| フレームワーク | Spring Boot 3 / Spring MVC / Spring Data JPA |
+| テンプレート | Thymeleaf |
+| デザイン | Bootstrap 5 |
+| データベース | H2（デフォルト） / MySQL（切替可） |
+| ビルドツール | Maven |
+| デプロイ先 | Render（Docker） |
 
 ---
 
@@ -77,17 +86,27 @@ cd bookstore
 ```bash
 mvn spring-boot:run
 ```
-・ブラウザで以下にアクセスしてアプリを確認できます：
+- ブラウザで以下にアクセスしてアプリを確認できます：
 http://localhost:1010/
 
-・H2コンソールも利用可能です👇
+- H2コンソールも利用可能です👇
 http://localhost:1010/h2-console
 
 ☁️ 環境切り替え（H2 → MySQL）
-・application.properties 内のH2設定をコメントアウト
-・MySQL用設定を有効化
-・環境変数で以下を設定
-　　DB_URL、DB_USER、DB_PASSWORD
+application.properties 内の設定を切り替えて使用します。
+- H2設定（デフォルト）
+```bash
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.username=sa
+```
+
+- MySQL設定（コメントアウトを解除）
+```bash
+spring.datasource.url=${DB_URL}
+spring.datasource.username=${DB_USER}
+spring.datasource.password=${DB_PASSWORD}
+```
 
 🌐 主なエンドポイント一覧
 | エンドポイント    | 説明       |
